@@ -495,14 +495,22 @@ async function sendMessage() {
   addMessage("Sen", userText);
   input.value = "";
 
-  if (state === 0 && userText.toLowerCase() === "evet") {
+  if (state === 0) {
+  if (userText.toLowerCase() === "evet") {
     state = 1;
     setTimeout(() => {
       addMessage("AkademiMentor", questions[0]);
       setButtonState(false);
     }, 600);
-    return;
+  } else {
+    setTimeout(() => {
+      addMessage("AkademiMentor", 'Anladım 😊 Hazır olduğunda "evet" yazarsan başlayabiliriz.');
+      setButtonState(false);
+    }, 600);
   }
+  return;
+}
+
 
   if (state > 0 && state <= questions.length) {
     state++;

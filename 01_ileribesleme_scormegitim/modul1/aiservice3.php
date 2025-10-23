@@ -629,57 +629,58 @@ Hazırsan "Evet" yazabilirsin!`);
     });
 
     async function sendMessage() {
-      const userText = input.value.trim();
-      if (!userText) return;
+  const userText = input.value.trim();
+  if (!userText) return;
 
-      addMessage("Sen", userText);
-      input.value = "";
+  addMessage("Sen", userText);
+  input.value = "";
 
-		/*
-      if (!quizStarted && !quizCompleted && (userText.toLowerCase().includes("evet") || userText.toLowerCase().includes("başla"))) {
-        setTimeout(() => {
-          startQuiz();
-        }, 500);
-        return;
-      }*/
-		
-		if (!quizStarted && !quizCompleted){
-			setTimeout(() => {
-			  startQuiz();
-			}, 500);
-			return;
-      }
+  const lowerText = userText.toLowerCase();
 
-      if (quizStarted && !quizCompleted) {
-        setTimeout(() => {
-          addMessage("AkademiMentor", "Lütfen önce yukarıdaki soruyu cevaplayın! 😊");
-        }, 500);
-        return;
-      }
-
-      try{
-        const response = await fetch('', {
-          method:'POST',
-          headers:{ 'Content-Type':'application/json' },
-          body: JSON.stringify({ message: userText })
-        });
-        const data = await response.json();
-        if (data.reply) {
-          setTimeout(() => {
-            addMessage("AkademiMentor", data.reply);
-          }, 500);
-        } else {
-          setTimeout(() => {
-            addMessage("AkademiMentor", "Bir hata oluştu: " + (data.error || "bilinmeyen hata"));
-          }, 500);
-        }
-      }catch(err){
-        console.error(err);
-        setTimeout(() => {
-          addMessage("AkademiMentor", "Bağlantı hatası oluştu. Lütfen tekrar deneyin.");
-        }, 500);
-      }
+  if (!quizStarted && !quizCompleted) {
+    if (lowerText === "evet") {
+      setTimeout(() => {
+        startQuiz();
+      }, 500);
+    } else {
+      setTimeout(() => {
+        addMessage("AkademiMentor", "Anladım 😊 Hazır olduğunda 'evet' yazarsan başlayabiliriz.");
+      }, 500);
     }
+    return;
+  }
+
+  if (quizStarted && !quizCompleted) {
+    setTimeout(() => {
+      addMessage("AkademiMentor", "Lütfen önce yukarıdaki soruyu cevaplayın! 😊");
+    }, 500);
+    return;
+  }
+
+  try {
+    const response = await fetch('', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userText })
+    });
+    const data = await response.json();
+    if (data.reply) {
+      setTimeout(() => {
+        addMessage("AkademiMentor", data.reply);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        addMessage("AkademiMentor", "Bir hata oluştu: " + (data.error || "bilinmeyen hata"));
+      }, 500);
+    }
+  } catch (err) {
+    console.error(err);
+    setTimeout(() => {
+      addMessage("AkademiMentor", "Bağlantı hatası oluştu. Lütfen tekrar deneyin.");
+    }, 500);
+  }
+}
+
   </script>
 </body>
 </html>

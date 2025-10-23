@@ -6,7 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // OPENAI API KEY BURAYA KOYULMALI
-$apiKey = '';
+$apiKey = getenv('OPENAI_API_KEY') ?: '';
 
 // ---- Yardımcı fonksiyonlar ----
 function read_training_context() {
