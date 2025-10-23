@@ -3,7 +3,8 @@ ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
 
-$apiKey = 'sk-0X2KrChH7_6645bWJEWlpsHEwV5FnzG2TFjR3ZbALAT3BlbkFJmi60t6s9vk4llqrOcviBWPdHb-A_jKDtMvctuQmh0A';
+// OPENAI API KEY BURAYA KOYULMALI
+$apiKey = '';
 
 // --------------------
 // Kural Seti

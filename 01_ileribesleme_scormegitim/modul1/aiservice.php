@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$apiKey = 'sk-0X2KrChH7_6645bWJEWlpsHEwV5FnzG2TFjR3ZbALAT3BlbkFJmi60t6s9vk4llqrOcviBWPdHb-A_jKDtMvctuQmh0A';
+// OPENAI API KEY BURAYA KOYULMALI
+$apiKey = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $inputJSON = file_get_contents('php://input');
